@@ -7,3 +7,5 @@ search_enabled: true
 aux_links:
   'Homepage':
     - 'skeate.dev/fp-ts-representable'
+  'GitHub':
+    - '//github.com/skeate/fp-ts-representable'
