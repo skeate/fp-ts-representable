@@ -1,6 +1,6 @@
 # fp-ts-representable
 
-[![Test](skeate.dev&#x2F;fp-ts-representable&#x2F;actions&#x2F;workflows&#x2F;build.yml&#x2F;badge.svg)](skeate.dev&#x2F;fp-ts-representable&#x2F;actions&#x2F;workflows&#x2F;build.yml)
+[![Test](skeate.dev/fp-ts-representable/actions/workflows/build.yml/badge.svg)](skeate.dev/fp-ts-representable/actions/workflows/build.yml)
 
 [API Docs](http://)
 
