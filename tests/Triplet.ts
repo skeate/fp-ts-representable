@@ -27,9 +27,9 @@ export const Functor: Functor1<URI> = {
   map: (fa, f) => [f(fa[0]), f(fa[1]), f(fa[2])],
 }
 
-export const fst = <A>(t: Triplet<A>) => t[0]
-export const snd = <A>(t: Triplet<A>) => t[1]
-export const thd = <A>(t: Triplet<A>) => t[2]
+export const fst = <A>(t: Triplet<A>): A => t[0]
+export const snd = <A>(t: Triplet<A>): A => t[1]
+export const thd = <A>(t: Triplet<A>): A => t[2]
 
 export const distribute: Representable1<URI>['distribute'] = (F) => (fga) =>
   [F.map(fga, fst), F.map(fga, snd), F.map(fga, thd)]

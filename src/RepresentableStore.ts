@@ -103,6 +103,7 @@ export function getFunctor<G>(G: Representable<G>): Functor2C<URI, G>
 export function getFunctor<G>(G: Representable<G>): Functor2C<URI, G> {
   return {
     URI,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     _E: undefined as any,
     map: (fa, f) => repStore(G)(G.map(fa.rep, f))(fa.pos),
   }

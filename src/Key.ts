@@ -55,19 +55,24 @@ export interface URItoKey2<E> {
 
 /** @since 1.0.0 */
 // @ts-ignore
+// eslint-disable-next-line @typescript-eslint/no-empty-interface, @typescript-eslint/no-unused-vars
 export interface URItoKey3<R, E> {}
 
 /** @since 1.0.0 */
 // @ts-ignore
+// eslint-disable-next-line @typescript-eslint/no-empty-interface, @typescript-eslint/no-unused-vars
 export interface URItoKey4<S, R, E> {}
 
 /** @since 1.0.0 */
 export type Keyed1 = keyof URItoKey
 /** @since 1.0.0 */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type Keyed2 = keyof URItoKey2<any>
 /** @since 1.0.0 */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type Keyed3 = keyof URItoKey3<any, any>
 /** @since 1.0.0 */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type Keyed4 = keyof URItoKey4<any, any, any>
 
 /**
