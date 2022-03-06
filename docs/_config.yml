@@ -6,6 +6,6 @@ search_enabled: true
 # Aux links for the upper right navigation
 aux_links:
   'Homepage':
-    - 'skeate.dev/fp-ts-representable'
+    - '//skeate.dev/fp-ts-representable'
   'GitHub':
     - '//github.com/skeate/fp-ts-representable'
