@@ -1,15 +1,14 @@
 # fp-ts-representable
 
-[![Test](github.com/skeate/fp-ts-representable/actions/workflows/build.yml/badge.svg)](github.com/skeate/fp-ts-representable/actions/workflows/build.yml)
+[![Test](//github.com/skeate/fp-ts-representable/actions/workflows/build.yml/badge.svg)](//github.com/skeate/fp-ts-representable/actions/workflows/build.yml)
 
-[API Docs](http://)
+[API Docs](http://skeate.dev/fp-ts-representable)
 
 ---
 
 <!-- AUTO-GENERATED-CONTENT:START (TOC) -->
 
 - [Install](#install)
-- [Example](#example)
 
 <!-- AUTO-GENERATED-CONTENT:END -->
 
@@ -25,12 +24,4 @@ or
 
 ```bash
 npm install fp-ts fp-ts-representable
-```
-
-## Example
-
-```ts
-import * as Lib from 'fp-ts-representable'
-
-// write an example...
 ```
