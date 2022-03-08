@@ -1,0 +1,11 @@
+src
+sketch
+.github
+.vscode
+tests
+.prettier*
+.eslint*
+.cspell.json
+jest.config.js
+tsconfig.*
+docs
