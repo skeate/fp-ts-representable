@@ -1,6 +1,6 @@
 # fp-ts-representable
 
-[![Test](//github.com/skeate/fp-ts-representable/actions/workflows/build.yml/badge.svg)](//github.com/skeate/fp-ts-representable/actions/workflows/build.yml)
+[![Test](https://github.com/skeate/fp-ts-representable/actions/workflows/build.yml/badge.svg)](//github.com/skeate/fp-ts-representable/actions/workflows/build.yml)
 
 [API Docs](http://skeate.dev/fp-ts-representable)
 
