@@ -4,7 +4,9 @@ import {
   Representable,
   Representable1,
   Representable2,
+  Representable2C,
   Representable3,
+  Representable3C,
   Representable4,
 } from './Representable'
 import {
@@ -66,9 +68,15 @@ export function repStore<G extends URIS4 & Keyed4>(
 export function repStore<G extends URIS3 & Keyed3>(
   G: Representable3<G>
 ): <R, E, A>(rep: Kind3<G, R, E, A>) => (pos: KeyOf3<G, R, E>) => RepStore<G, A>
+export function repStore<G extends URIS3 & Keyed3, E>(
+  G: Representable3C<G, E>
+): <R, A>(rep: Kind3<G, R, E, A>) => (pos: KeyOf3<G, R, E>) => RepStore<G, A>
 export function repStore<G extends URIS2 & Keyed2>(
   G: Representable2<G>
 ): <E, A>(rep: Kind2<G, E, A>) => (pos: KeyOf2<G, E>) => RepStore<G, A>
+export function repStore<G extends URIS2 & Keyed2, E>(
+  G: Representable2C<G, E>
+): <A>(rep: Kind2<G, E, A>) => (pos: KeyOf2<G, E>) => RepStore<G, A>
 export function repStore<G extends URIS & Keyed1>(
   G: Representable1<G>
 ): <A>(rep: Kind<G, A>) => (pos: KeyOf1<G>) => RepStore<G, A>
@@ -96,6 +104,9 @@ declare module 'fp-ts/HKT' {
  * @category Instances
  */
 // @ts-ignore
+export function getFunctor<G extends URIS2 & Keyed2, E>(
+  G: Representable2C<G, E>
+): Functor2C<URI, G>
 export function getFunctor<G extends URIS & Keyed1>(
   G: Representable1<G>
 ): Functor2C<URI, G>
@@ -114,6 +125,9 @@ export function getFunctor<G>(G: Representable<G>): Functor2C<URI, G> {
  * @category Instances
  */
 // @ts-ignore
+export function getComonad<G extends URIS2 & Keyed2, E>(
+  G: Representable2C<G, E>
+): Comonad2C<URI, G>
 export function getComonad<G extends URIS & Keyed1>(
   G: Representable1<G>
 ): Comonad2C<URI, G>
