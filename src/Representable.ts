@@ -26,14 +26,18 @@ import {
   Distributive,
   Distributive1,
   Distributive2,
+  Distributive2C,
   Distributive3,
+  Distributive3C,
   Distributive4,
 } from './Distributive'
 import {
   Indexable,
   Indexable1,
   Indexable2,
+  Indexable2C,
   Indexable3,
+  Indexable3C,
   Indexable4,
 } from './Indexable'
 
@@ -66,12 +70,32 @@ export interface Representable2<F extends Keyed2 & URIS2>
 }
 
 /**
+ * @since 1.1.0
+ * @category Type classes
+ */
+export interface Representable2C<F extends Keyed2 & URIS2, E>
+  extends Distributive2C<F, E>,
+    Indexable2C<F, E> {
+  tabulate: <A>(kfa: (key: KeyOf2<F, E>) => A) => Kind2<F, E, A>
+}
+
+/**
  * @since 1.0.0
  * @category Type classes
  */
 export interface Representable3<F extends Keyed3 & URIS3>
   extends Distributive3<F>,
     Indexable3<F> {
+  tabulate: <R, E, A>(kfa: (key: KeyOf3<F, R, E>) => A) => Kind3<F, R, E, A>
+}
+
+/**
+ * @since 1.1.0
+ * @category Type classes
+ */
+export interface Representable3C<F extends Keyed3 & URIS3, E>
+  extends Distributive3C<F, E>,
+    Indexable3C<F, E> {
   tabulate: <R, E, A>(kfa: (key: KeyOf3<F, R, E>) => A) => Kind3<F, R, E, A>
 }
 

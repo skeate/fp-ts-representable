@@ -49,6 +49,14 @@ export interface Lookup2<F extends Keyed2 & URIS2> {
 }
 
 /**
+ * @since 1.1.0
+ * @category Type classes
+ */
+export interface Lookup2C<F extends Keyed2 & URIS2, E> {
+  lookup: (key: KeyOf2<F, E>) => <A>(fa: Kind2<F, E, A>) => Option<A>
+}
+
+/**
  * @since 1.0.0
  * @category Type classes
  */
@@ -56,6 +64,14 @@ export interface Lookup3<F extends Keyed3 & URIS3> {
   lookup: <R, E>(
     key: KeyOf3<F, R, E>
   ) => <A>(fa: Kind3<F, R, E, A>) => Option<A>
+}
+
+/**
+ * @since 1.1.0
+ * @category Type classes
+ */
+export interface Lookup3C<F extends Keyed3 & URIS3, E> {
+  lookup: <R>(key: KeyOf3<F, R, E>) => <A>(fa: Kind3<F, R, E, A>) => Option<A>
 }
 
 /**

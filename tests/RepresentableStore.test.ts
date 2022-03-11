@@ -23,7 +23,7 @@ describe('RepresentableStore', () => {
     laws.functor(RStore.getFunctor(Trip.Representable))(lift, liftEq)
   })
 
-  it('should have a valid Cofunctor instance', () => {
+  it('should have a valid Comonad instance', () => {
     const arb = lift(fc.integer())
     const Sa = liftEq(N.Eq)
     const arbFunc = fc.func(fc.nat())

@@ -22,7 +22,15 @@ import {
   KeyOf3,
   KeyOf4,
 } from './Key'
-import { Lookup, Lookup1, Lookup2, Lookup3, Lookup4 } from './Lookup'
+import {
+  Lookup,
+  Lookup1,
+  Lookup2,
+  Lookup2C,
+  Lookup3,
+  Lookup3C,
+  Lookup4,
+} from './Lookup'
 
 /**
  * @since 1.0.0
@@ -49,11 +57,29 @@ export interface Indexable2<F extends Keyed2 & URIS2> extends Lookup2<F> {
 }
 
 /**
+ * @since 1.1.0
+ * @category Type classes
+ */
+export interface Indexable2C<F extends Keyed2 & URIS2, E>
+  extends Lookup2C<F, E> {
+  index: <A>(fa: Kind2<F, E, A>) => (key: KeyOf2<F, E>) => A
+}
+
+/**
  * @since 1.0.0
  * @category Type classes
  */
 export interface Indexable3<F extends Keyed3 & URIS3> extends Lookup3<F> {
   index: <R, E, A>(fa: Kind3<F, R, E, A>) => (key: KeyOf3<F, R, E>) => A
+}
+
+/**
+ * @since 1.1.0
+ * @category Type classes
+ */
+export interface Indexable3C<F extends Keyed3 & URIS3, E>
+  extends Lookup3C<F, E> {
+  index: <R, A>(fa: Kind3<F, R, E, A>) => (key: KeyOf3<F, R, E>) => A
 }
 
 /**
