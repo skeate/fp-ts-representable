@@ -1,6 +1,6 @@
 ---
 title: Lookup.ts
-nav_order: 4
+nav_order: 5
 parent: Modules
 ---
 
@@ -16,7 +16,9 @@ Added in v1.0.0
   - [Lookup (interface)](#lookup-interface)
   - [Lookup1 (interface)](#lookup1-interface)
   - [Lookup2 (interface)](#lookup2-interface)
+  - [Lookup2C (interface)](#lookup2c-interface)
   - [Lookup3 (interface)](#lookup3-interface)
+  - [Lookup3C (interface)](#lookup3c-interface)
   - [Lookup4 (interface)](#lookup4-interface)
 
 ---
@@ -59,6 +61,18 @@ export interface Lookup2<F extends Keyed2 & URIS2> {
 
 Added in v1.0.0
 
+## Lookup2C (interface)
+
+**Signature**
+
+```ts
+export interface Lookup2C<F extends Keyed2 & URIS2, E> {
+  lookup: (key: KeyOf2<F, E>) => <A>(fa: Kind2<F, E, A>) => Option<A>
+}
+```
+
+Added in v1.1.0
+
 ## Lookup3 (interface)
 
 **Signature**
@@ -70,6 +84,18 @@ export interface Lookup3<F extends Keyed3 & URIS3> {
 ```
 
 Added in v1.0.0
+
+## Lookup3C (interface)
+
+**Signature**
+
+```ts
+export interface Lookup3C<F extends Keyed3 & URIS3, E> {
+  lookup: <R>(key: KeyOf3<F, R, E>) => <A>(fa: Kind3<F, R, E, A>) => Option<A>
+}
+```
+
+Added in v1.1.0
 
 ## Lookup4 (interface)
 

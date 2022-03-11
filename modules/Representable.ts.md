@@ -1,6 +1,6 @@
 ---
 title: Representable.ts
-nav_order: 5
+nav_order: 6
 parent: Modules
 ---
 
@@ -16,7 +16,9 @@ Added in v1.0.0
   - [Representable (interface)](#representable-interface)
   - [Representable1 (interface)](#representable1-interface)
   - [Representable2 (interface)](#representable2-interface)
+  - [Representable2C (interface)](#representable2c-interface)
   - [Representable3 (interface)](#representable3-interface)
+  - [Representable3C (interface)](#representable3c-interface)
   - [Representable4 (interface)](#representable4-interface)
 
 ---
@@ -59,6 +61,18 @@ export interface Representable2<F extends Keyed2 & URIS2> extends Distributive2<
 
 Added in v1.0.0
 
+## Representable2C (interface)
+
+**Signature**
+
+```ts
+export interface Representable2C<F extends Keyed2 & URIS2, E> extends Distributive2C<F, E>, Indexable2C<F, E> {
+  tabulate: <A>(kfa: (key: KeyOf2<F, E>) => A) => Kind2<F, E, A>
+}
+```
+
+Added in v1.1.0
+
 ## Representable3 (interface)
 
 **Signature**
@@ -70,6 +84,18 @@ export interface Representable3<F extends Keyed3 & URIS3> extends Distributive3<
 ```
 
 Added in v1.0.0
+
+## Representable3C (interface)
+
+**Signature**
+
+```ts
+export interface Representable3C<F extends Keyed3 & URIS3, E> extends Distributive3C<F, E>, Indexable3C<F, E> {
+  tabulate: <R, E, A>(kfa: (key: KeyOf3<F, R, E>) => A) => Kind3<F, R, E, A>
+}
+```
+
+Added in v1.1.0
 
 ## Representable4 (interface)
 
