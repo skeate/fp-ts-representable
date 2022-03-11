@@ -40,6 +40,7 @@ declare module 'fp-ts/HKT' {
 }
 
 declare module './Key' {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   interface URItoKey2<E> {
     [URI]: Coord
   }
