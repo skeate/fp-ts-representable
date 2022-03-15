@@ -173,10 +173,10 @@ export const getRepresentable = <Dim extends readonly [number, number]>(
  * @since 1.1.0
  * @category Instances
  */
-export const getShow: <A>(
+export const getShow: <K, A>(
   show: Show<A>,
   intercalation?: string
-) => Show<BoundedGrid<unknown, A>> = (show, intercalation = '') => ({
+) => Show<BoundedGrid<K, A>> = (show, intercalation = '') => ({
   show: (bg) =>
     bg.values.map((r) => r.map(show.show).join(intercalation)).join('\n'),
 })

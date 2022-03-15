@@ -40,7 +40,8 @@ import {
   Functor3,
   Functor3C,
 } from 'fp-ts/Functor'
-import { experiment as _experiment, Store } from 'fp-ts/Store'
+import { Store } from 'fp-ts/Store'
+import { Show } from 'fp-ts/lib/Show'
 
 /**
  * @since 1.0.0
@@ -170,6 +171,10 @@ interface Experiment<G, Key> {
   ) => <A>(wa: RepStore<G, A>) => HKT<F, A>
 }
 
+/**
+ * @since 1.2.0
+ * @category Utils
+ */
 export function experiment<G extends URIS2 & Keyed2, GE>(
   G: Representable2C<G, GE>
 ): Experiment<G, KeyOf2<G, GE>>
@@ -177,9 +182,27 @@ export function experiment<G extends URIS & Keyed1>(
   G: Representable1<G>
 ): Experiment<G, KeyOf1<G>>
 export function experiment<G>(G: Representable<G>): Experiment<G, Key<G>>
-export function experiment<G>(_G: Representable<G>): Experiment<G, Key<G>> {
+export function experiment<G>(): Experiment<G, Key<G>> {
   return <F>(F: Functor<F>) =>
     (f: (s: Key<G>) => HKT<F, Key<G>>) =>
     <A>(wa: Store<Key<G>, A>): HKT<F, A> =>
       F.map(f(wa.pos), (s) => wa.peek(s))
 }
+
+/**
+ * @since 1.2.0
+ * @category Instances
+ */
+export const getShow: {
+  <G extends URIS4, S, R, E, A>(GShow: Show<Kind4<G, S, R, E, A>>): Show<
+    RepStore<G, A>
+  >
+  <G extends URIS3, R, E, A>(GShow: Show<Kind3<G, R, E, A>>): Show<
+    RepStore<G, A>
+  >
+  <G extends URIS2, E, A>(GShow: Show<Kind2<G, E, A>>): Show<RepStore<G, A>>
+  <G extends URIS, A>(GShow: Show<Kind<G, A>>): Show<RepStore<G, A>>
+  <G, A>(GShow: Show<HKT<G, A>>): Show<RepStore<G, A>>
+} = <G, A>(GShow: Show<HKT<G, A>>): Show<RepStore<G, A>> => ({
+  show: (rs) => GShow.show(rs.rep),
+})

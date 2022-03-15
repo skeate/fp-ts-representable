@@ -69,10 +69,10 @@ export const showGrid = (width: number, height: number): Show<Grid> => ({
 const loop = (grid: Grid): T.Task<void> =>
   pipe(
     T.Do,
-    T.chainIOK((_) => Cns.log(showGrid(5, 5).show(grid))),
-    T.chainIOK((_) => Cns.log('')),
+    T.chainIOK(() => Cns.log(showGrid(5, 5).show(grid))),
+    T.chainIOK(() => Cns.log('')),
     T.delay(100),
-    T.chain((_) => loop(basicStep(grid)))
+    T.chain(() => loop(basicStep(grid)))
   )
 
 loop(grid)()

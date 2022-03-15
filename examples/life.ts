@@ -63,16 +63,18 @@ const grid = RS.repStore(Representable5x5)(
 const loop = (grid: Grid): T.Task<void> =>
   pipe(
     T.Do,
-    T.chainIOK((_) =>
+    T.chainIOK(() =>
       Cns.log(
-        BG.getShow({ show: (a: boolean) => (a ? '\u2587' : '\u2591') }).show(
-          grid.rep as any
-        )
+        RS.getShow<BG.URI, readonly [5, 5], boolean>(
+          BG.getShow({
+            show: (a: boolean) => (a ? '\u2587' : '\u2591'),
+          })
+        ).show(grid)
       )
     ),
-    T.chainIOK((_) => Cns.log('')),
+    T.chainIOK(() => Cns.log('')),
     T.delay(100),
-    T.chain((_) => loop(basicStep(grid)))
+    T.chain(() => loop(basicStep(grid)))
   )
 
 loop(grid)()
