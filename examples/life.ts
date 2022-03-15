@@ -2,23 +2,20 @@
  * Heavily based on https://chrispenner.ca/posts/conways-game-of-life
  */
 
-import { readonlyArray } from 'fp-ts'
 import { identity, pipe } from 'fp-ts/function'
+import * as Cns from 'fp-ts/Console'
+import * as T from 'fp-ts/Task'
 import * as RA from 'fp-ts/ReadonlyArray'
 import * as RNEA from 'fp-ts/ReadonlyNonEmptyArray'
-import { Show } from 'fp-ts/Show'
-import * as Store from 'fp-ts/Store'
-import * as Str from 'fp-ts/string'
 
 import * as BG from '../src/BoundedGrid'
-import { getKeyOf } from '../src/Key'
 import * as RS from '../src/RepresentableStore'
-
-type Coord = readonly [number, number]
 
 type Grid = RS.RepStore<BG.URI, boolean>
 
-const Representable5x5 = BG.getRepresentable([5, 5], BG.torus)
+const Representable5x5 = BG.getRepresentable([5, 5] as const, BG.torus)
+
+const Comonad = RS.getComonad(Representable5x5)
 
 type Rule = (grid: Grid) => boolean
 
@@ -29,37 +26,53 @@ const neighborCoords = RA.comprehension(
 )
 
 export const basicRule: Rule = (g) => {
-  const alive = Store.Comonad.extract(g)
+  const alive = RS.getComonad(Representable5x5).extract(g)
   const addCoords =
-    (a: Coord) =>
-    (b: Coord): Coord =>
+    (a: BG.Coord) =>
+    (b: BG.Coord): BG.Coord =>
       [a[0] + b[0], a[1] + b[1]]
   const neighbors = pipe(
     g,
-    Store.experiment(RA.Functor)((s) =>
-      pipe(neighborCoords, RA.map(addCoords(getKeyOf(s))))
+    RS.experiment(Representable5x5)(RA.Functor)((s) =>
+      pipe(neighborCoords, RA.map(addCoords(s)))
     )
   )
   const numNeighborsAlive = pipe(neighbors, RA.filter(identity), RA.size)
   return (alive && numNeighborsAlive === 2) || numNeighborsAlive === 3
 }
 
-export const step: (r: Rule) => (g: Grid<boolean>) => Grid<boolean> =
-  Store.Comonad.extend
+export const step: (r: Rule) => (g: Grid) => Grid = (r) => (g) =>
+  Comonad.extend(g, r)
 
-export const showGrid = (
-  width: number,
-  height: number
-): Show<Grid<boolean>> => ({
-  show: (g) => {
-    console.log(g)
-    return pipe(
-      RNEA.comprehension(
-        [RNEA.range(0, height - 1), RNEA.range(0, width - 1)],
-        (y, x) =>
-          (x === 0 ? '\n' : '') + (g.peek([x, y]) ? '\u{02588}' : '\u{02591}')
-      ),
-      RNEA.concatAll(Str.Semigroup)
-    )
-  },
-})
+const basicStep = step(basicRule)
+
+const glider = [
+  [1, 0],
+  [2, 1],
+  [0, 2],
+  [1, 2],
+  [2, 2],
+]
+
+const grid = RS.repStore(Representable5x5)(
+  BG.createWith([5, 5] as const)(([x, y]) =>
+    glider.some(([gx, gy]) => x === gx && y === gy)
+  )
+)([0, 0])
+
+const loop = (grid: Grid): T.Task<void> =>
+  pipe(
+    T.Do,
+    T.chainIOK((_) =>
+      Cns.log(
+        BG.getShow({ show: (a: boolean) => (a ? '\u2587' : '\u2591') }).show(
+          grid.rep as any
+        )
+      )
+    ),
+    T.chainIOK((_) => Cns.log('')),
+    T.delay(100),
+    T.chain((_) => loop(basicStep(grid)))
+  )
+
+loop(grid)()
