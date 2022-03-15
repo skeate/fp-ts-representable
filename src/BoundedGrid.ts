@@ -31,7 +31,7 @@ export type URI = typeof URI
  * @since 1.1.0
  * @category Model
  */
-export type Coord = [x: number, y: number]
+export type Coord = readonly [x: number, y: number]
 
 declare module 'fp-ts/HKT' {
   interface URItoKind2<E, A> {
@@ -73,7 +73,9 @@ type Index = Ix.Indexable2<URI>['index']
 export const torus: Index =
   (grid) =>
   ([x, y]) =>
-    grid.values[y % grid.values.length]![x % grid.values[0].length]!
+    grid.values[(y + grid.values.length) % grid.values.length]![
+      (x + grid.values[0].length) % grid.values[0].length
+    ]!
 
 /**
  * @since 1.1.0
