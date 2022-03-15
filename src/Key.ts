@@ -119,26 +119,3 @@ export type KeyOf2<URI extends Keyed2, E> = URItoKey2<E>[URI]
 export type KeyOf3<URI extends Keyed3, R, E> = URItoKey3<R, E>[URI]
 /** @since 1.0.0 */
 export type KeyOf4<URI extends Keyed4, S, R, E> = URItoKey4<S, R, E>[URI]
-
-export const getKeyOf =
-  <E = unknown, R = unknown, S = unknown>() =>
-  <URI>(
-    key: Key<URI>
-  ): URI extends Keyed1
-    ? KeyOf1<URI>
-    : URI extends Keyed2
-    ? KeyOf2<URI, E>
-    : URI extends Keyed3
-    ? KeyOf3<URI, R, E>
-    : URI extends Keyed4
-    ? KeyOf4<URI, S, R, E>
-    : never =>
-    key as any
-
-export const toKey = <URI extends Keyed1 | Keyed2 | Keyed3 | Keyed4>(
-  key:
-    | KeyOf1<URI>
-    | KeyOf2<URI, any>
-    | KeyOf3<URI, any, any>
-    | KeyOf4<URI, any, any, any>
-): Key<URI> => key as any
