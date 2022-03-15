@@ -128,7 +128,7 @@ Added in v1.1.0
 **Signature**
 
 ```ts
-export declare const getShow: <A>(show: Show<A>, intercalation?: string | undefined) => Show<BoundedGrid<unknown, A>>
+export declare const getShow: <K, A>(show: Show<A>, intercalation?: string | undefined) => Show<BoundedGrid<K, A>>
 ```
 
 Added in v1.1.0
@@ -157,7 +157,7 @@ Added in v1.1.0
 **Signature**
 
 ```ts
-export type Coord = [x: number, y: number]
+export type Coord = readonly [x: number, y: number]
 ```
 
 Added in v1.1.0
