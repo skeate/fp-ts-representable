@@ -1,7 +1,7 @@
 {
   "name": "fp-ts-representable",
   "homepage": "skeate.dev/fp-ts-representable",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "exports": {
     "./": {
       "require": "./lib/*.js",
