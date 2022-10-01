@@ -1,3 +1,4 @@
+/** @since 1.0.0 */
 export * as boundedGrid from './BoundedGrid'
 export * as distributive from './Distributive'
 export * as indexable from './Indexable'
